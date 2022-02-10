@@ -17,10 +17,10 @@ def main():
     api_token = os.environ.get("INPUT_API_TOKEN")
     parameters = os.environ.get("INPUT_PARAMETERS")
     cookies = os.environ.get("INPUT_COOKIES")
-    wait = bool(os.environ.get("INPUT_WAIT", True))
-    timeout = int(os.environ.get("INPUT_TIMEOUT", 600))
-    start_timeout = int(os.environ.get("INPUT_START_TIMEOUT", 600))
-    interval = int(os.environ.get("INPUT_INTERVAL", 5))
+    wait = bool(os.environ.get("INPUT_WAIT"))
+    timeout = int(os.environ.get("INPUT_TIMEOUT"))
+    start_timeout = int(os.environ.get("INPUT_START_TIMEOUT"))
+    interval = int(os.environ.get("INPUT_INTERVAL"))
 
     if username and api_token:
         auth = (username, api_token)
@@ -41,6 +41,8 @@ def main():
             cookies = json.loads(cookies)
         except json.JSONDecodeError as e:
             raise Exception('`cookies` is not valid JSON.') from e
+    else:
+        cookies = {}
 
     jenkins = Jenkins(url, auth=auth, cookies=cookies)
 
