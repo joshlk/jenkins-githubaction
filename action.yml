@@ -1,5 +1,5 @@
 name: "Jenkins"
-description: "Start Jenkins jobs and update status"
+description: "Start Jenkins jobs and report back url and status of build"
 author: "Josh Levy-Kramer"
 inputs:
   url:
