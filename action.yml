@@ -10,28 +10,28 @@ inputs:
     required: true
   username:
     description: "Jenkins username"
-    required: true
+    required: false
   api_token:
     description: "Jenkins API token"
-    required: true
+    required: false
   parameters:
     description: 'Build parameters in JSON format e.g. `{"field1":"value1"}`'
-    required: true
+    required: false
   cookies:
     description: 'Cookies to include in HTTP requests in JSON format e.g. `{"field1":"value1"}`'
-    required: true
+    required: false
   wait:
     description: "Should the runner wait for the build to finish and provide ok status"
-    required: true
+    required: false
   timeout:
     description: "Timeout in seconds for build to complete"
-    required: true
+    required: false
   start_timeout:
     description: "Timeout in seconds for build to start"
-    required: true
+    required: false
   interval:
     description: "How frequently in seconds to query Jenkins for build status"
-    required: true
+    required: false
 outputs:
   build_url:
     description: "Jenkins build URL"
