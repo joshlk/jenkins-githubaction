@@ -1,13 +1,40 @@
-name: "Python Container Action Template"
-description: "Get started with Python Container actions"
-author: "Jacob Tomlinson"
+name: "Jenkins"
+description: "Start Jenkins jobs and update status"
+author: "Josh Levy-Kramer"
 inputs:
-  myInput:
-    description: "Input to use"
-    default: "world"
+  url:
+    description: "Jenkins URL including http/https protocol"
+    required: true
+  job_name:
+    description: "Jenkins job name to build"
+    required: true
+  username:
+    description: "Jenkins username"
+    required: true
+  api_token:
+    description: "Jenkins API token"
+    required: true
+  parameters:
+    description: 'Build parameters in JSON format e.g. `{"field1":"value1"}`'
+    required: true
+  cookies:
+    description: 'Cookies to include in HTTP requests in JSON format e.g. `{"field1":"value1"}`'
+    required: true
+  wait:
+    description: "Should the runner wait for the build to finish and provide ok status"
+    required: true
+  timeout:
+    description: "Timeout in seconds for build to complete"
+    required: true
+  start_timeout:
+    description: "Timeout in seconds for build to start"
+    required: true
+  interval:
+    description: "How frequently in seconds to query Jenkins for build status"
+    required: true
 outputs:
-  myOutput:
-    description: "Output from the action"
+  build_url:
+    description: "Jenkins build URL"
 runs:
   using: "docker"
   image: "Dockerfile"
