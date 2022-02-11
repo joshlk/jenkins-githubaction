@@ -71,6 +71,7 @@ def main():
     build_url = build.url
     logging.info(f"Build URL: {build_url}")
     print(f"::set-output name=build_url::{build_url}")
+    print(f"::notice title=build_url::{build_url}")
 
     if not wait:
         logging.info("Not waiting for build to finish.")
