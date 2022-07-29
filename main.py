@@ -7,6 +7,7 @@ from time import time, sleep
 log_level = os.environ.get('INPUT_LOG_LEVEL', 'INFO')
 logging.basicConfig(format='JENKINS_ACTION: %(message)s', level=log_level)
 
+
 def main():
     # Required
     url = os.environ["INPUT_URL"]
@@ -26,7 +27,8 @@ def main():
         auth = (username, api_token)
     else:
         auth = None
-        logging.info('Username or token not provided. Connecting without authentication.')
+        logging.info(
+            'Username or token not provided. Connecting without authentication.') # noqa
 
     if parameters:
         try:
@@ -66,7 +68,8 @@ def main():
         logging.info(f'Build not started yet. Waiting {interval} seconds.')
         sleep(interval)
     else:
-        raise Exception(f"Could not obtain build and timed out. Waited for {start_timeout} seconds.")
+        raise Exception(
+            f"Could not obtain build and timed out. Waited for {start_timeout} seconds.") # noqa
 
     build_url = build.url
     logging.info(f"Build URL: {build_url}")
@@ -82,14 +85,17 @@ def main():
     while time() - t0 < timeout:
         result = build.result
         if result == 'SUCCESS':
-            logging.info(f'Build successful 🎉')
+            logging.info('Build successful 🎉')
             return
         elif result in ('FAILURE', 'ABORTED', 'UNSTABLE'):
-            raise Exception(f'Build status returned "{result}". Build has failed ☹️.')
-        logging.info(f'Build not finished yet. Waiting {interval} seconds. {build_url}')
+            raise Exception(
+                f'Build status returned "{result}". Build has failed ☹️.')
+        logging.info(
+            f'Build not finished yet. Waiting {interval} seconds. {build_url}')
         sleep(interval)
     else:
-        raise Exception(f"Build has not finished and timed out. Waited for {timeout} seconds.")
+        raise Exception(
+            f"Build has not finished and timed out. Waited for {timeout} seconds.") # noqa
 
 
 if __name__ == "__main__":
